@@ -1,0 +1,41 @@
+# drawbridge-cljs
+
+nrepl/drawbridge client for clojurescript
+
+https://github.com/hiredman/nrepl-cljs-middleware
+https://github.com/cemerick/drawbridge/
+https://github.com/clojure/tools.nrepl
+
+## Usage
+
+add the following to your project.clj
+
+[drawbridge-cljs "0.0.1"]
+
+(ns foo.bar
+  (:require [drawbridge.client :as repl]))
+
+(let [r (repl/nrepl-send
+          "/repl" {"op" "compile-cljs"    
+                   "code" (pr-str '(+ 1 2))})]
+  (add-watch r :close
+             (fn [k this _ v]
+               (when (= "done"
+                        (aget (get (last v) "status") 0))
+                 (repl/nrepl-close this)
+                 (remove-watch this k))))
+  (add-watch r :done
+             (fn [k this _ v]
+               (when (= "done" (aget (get (last v) "status") 0))
+                 (try
+                   ((js/eval (get (first v) "javascript")))
+                   (catch js/Object e
+                     (.log js/console e)))))))
+                            
+
+
+## License
+
+Copyright (C) 2012 Kevin Downey
+
+Distributed under the Eclipse Public License, the same as Clojure.
