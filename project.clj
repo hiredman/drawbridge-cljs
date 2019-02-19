@@ -1,11 +1,12 @@
-(defproject drawbridge-cljs "0.0.1"
+(defproject drawbridge-cljs "0.0.2-SNAPSHOT"
   :description "drawbridge client for clojurescript"
-  :dependencies [[org.clojure/clojure "1.4.0"]]
-  :dev-dependencies [[lein-cljsbuild "0.2.4"]]
-  :hooks [leiningen.cljsbuild]
-  :cljsbuild {:builds
-              {:main {:source-path "src-cljs/"
-                      :compiler {:output-to "foo.js"
-                                 :optimizations :whitespace
-                                 :pretty-print true}
-                      :jar true}}})
+  :dependencies [[org.clojure/clojure "1.10.1"]
+                 [org.clojure/clojurescript "1.10.520"]]
+  :plugins [[lein-cljsbuild "1.1.7"]]
+  :cljsbuild {:builds [
+               {:id :main
+                :source-paths ["src-cljs"]
+                :compiler {:output-to "target/foo.js"
+                           :optimizations :whitespace
+                           :pretty-print true}
+                :jar true}]})
