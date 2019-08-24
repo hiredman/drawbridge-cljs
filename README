@@ -10,7 +10,7 @@ https://github.com/clojure/tools.nrepl
 
 add the following to your project.clj
 
-[drawbridge-cljs "0.0.1"]
+[drawbridge-cljs "0.0.2-SNAPSHOT"]
 
 (ns foo.bar
   (:require [drawbridge.client :as repl]))
