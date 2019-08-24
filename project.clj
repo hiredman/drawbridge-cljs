@@ -5,7 +5,7 @@
   :plugins [[lein-cljsbuild "1.1.7"]]
   :cljsbuild {:builds [
                {:id :main
-                :source-paths ["src-cljs"]
+                :source-paths ["src"]
                 :compiler {:output-to "target/foo.js"
                            :optimizations :whitespace
                            :pretty-print true}
