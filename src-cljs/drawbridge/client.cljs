@@ -27,7 +27,7 @@
 
 (deftype NreplResult [results id watchers url]
   IDeref
-  (deref [repl]
+  (-deref [repl]
     results)
   IWatchable
   (-notify-watches [this oldval newval]
